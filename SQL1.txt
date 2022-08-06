@@ -1,0 +1,362 @@
+CREATE DATABASE BUDDY
+use buddy; 
+CREATE TABLE  employee(id INT, name VARCHAR(100),fname VARCHAR(100),salary DOUBLE,deptid INT);
+#view the table
+desc employee;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int          | YES  |     | NULL    |       |
+| name   | varchar(100) | YES  |     | NULL    |       |
+| fname  | varchar(100) | YES  |     | NULL    |       |
+| salary | double       | YES  |     | NULL    |       |
+| deptid | int          | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+
+# Fill with data
+INSERT INTO employee VALUES(1,'RAVINDER','KUMAR',1000,1);
+INSERT INTO employee VALUES(2,'INDER','UMAR',2000,2);
+INSERT INTO employee VALUES(3,'SHYAM','RAJ',3000,3);
+INSERT INTO employee VALUES(4,'REET','KAUR',4000,4);
+
+
+ select * from employee;
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
+|    2 | INDER    | UMAR  |   2000 |      2 |
+|    3 | SHYAM    | RAJ   |   3000 |      3 |
+|    4 | REET     | KAUR  |   4000 |      4 |
++------+----------+-------+--------+--------+
+
+update employee set fname='simran' where id=4;
+ select * from employee;
++------+----------+--------+--------+--------+
+| id   | name     | fname  | salary | deptid |
++------+----------+--------+--------+--------+
+|    1 | RAVINDER | KUMAR  |   1000 |      1 |
+|    2 | INDER    | UMAR   |   2000 |      2 |
+|    3 | SHYAM    | RAJ    |   3000 |      3 |
+|    4 | REET     | simran |   4000 |      4 |
++------+----------+--------+--------+--------+
+
+
+ delete from employee where id=4;
+ select * from employee;
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
+|    2 | INDER    | UMAR  |   2000 |      2 |
+|    3 | SHYAM    | RAJ   |   3000 |      3 |
++------+----------+-------+--------+--------+
+
+ select * from employee;
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
+|    2 | INDER    | UMAR  |   2000 |      2 |
+|    3 | SHYAM    | RAJ   |   3000 |      3 |
+|    4 | REET     | KAUR  |   4000 |      4 |
++------+----------+-------+--------+--------+
+
+
+ select * from employee where salary > 2000;
++------+-------+-------+--------+--------+
+| id   | name  | fname | salary | deptid |
++------+-------+-------+--------+--------+
+|    3 | SHYAM | RAJ   |   3000 |      3 |
+|    4 | REET  | KAUR  |   4000 |      4 |
++------+-------+-------+--------+--------+
+
+
+
+ select * from employee where id=2;
++------+-------+-------+--------+--------+
+| id   | name  | fname | salary | deptid |
++------+-------+-------+--------+--------+
+|    2 | INDER | UMAR  |   2000 |      2 |
++------+-------+-------+--------+--------+
+
+
+
+ SELECT * FROM employee where fname='UMAR';
++------+-------+-------+--------+--------+
+| id   | name  | fname | salary | deptid |
++------+-------+-------+--------+--------+
+|    2 | INDER | UMAR  |   2000 |      2 |
++------+-------+-------+--------+--------+
+
+
+ SELECT * FROM employee where salary >= 2000;
++------+-------+-------+--------+--------+
+| id   | name  | fname | salary | deptid |
++------+-------+-------+--------+--------+
+|    2 | INDER | UMAR  |   2000 |      2 |
+|    3 | SHYAM | RAJ   |   3000 |      3 |
+|    4 | REET  | KAUR  |   4000 |      4 |
++------+-------+-------+--------+--------+
+
+
+
+ SELECT * FROM employee where name like '%a%';
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
+|    3 | SHYAM    | RAJ   |   3000 |      3 |
++------+----------+-------+--------+--------+
+
+
+------------------*--------------------------
+# HERE we create new table
+
+ CREATE TABLE dept(id INT,name VARCHAR(100));
+
+# WE print the table.
+ desc dept;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | YES  |     | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+
+#Drop is used to delete the table.
+
+drop table dept;
+
+# We create new table.
+create table dept(id int primary key auto_increment ,name varchar (100));
+
+desc dept;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(100) | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+
+INSERT values in the table.
+INSERT INTO dept(name) values('IT');
+INSERT INTO dept(name) values('SALE');
+INSERT INTO dept(name) values('MARKETING');
+
+ desc dept;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(100) | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+
+
+ select * from dept;
++----+-----------+
+| id | name      |
++----+-----------+
+|  1 | IT        |
+|  2 | SALE      |
+|  3 | MARKETING |
++----+-----------+
+
+#YHAN hume employee table puri delete krdi h kuki hume primary key or foreign key dalni h 
+ 
+delete from employee;
+
+select * from employee;  \\ yha humne ye command isly lagayi h kuki hume confirm hogya h ki hamari employee table delete ho chuki h.
+
+
+This command is used to make relationship btw 2 tables.
+alter table employee ADD constraint FK_deptid_id Foreign key(deptid) references dept(id);
+
+# Again we insert data in the table.
+
+INSERT INTO employee VALUES(1,'RAVINDER','KUMAR',1000,1);
+INSERT INTO employee VALUES(2,'INDER','UMAR',2000,2);
+INSERT INTO employee VALUES(3,'SHYAM','RAJ',3000,3);
+
+
+select * from employee;
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
+|    2 | INDER    | UMAR  |   2000 |      2 |
+|    3 | SHYAM    | RAJ   |   3000 |      3 |
++------+----------+-------+--------+--------+
+
+
+
+ select * from dept;
++----+-----------+
+| id | name      |
++----+-----------+
+|  1 | IT        |
+|  2 | SALE      |
+|  3 | MARKETING |
++----+-----------+
+
+
+# Here we use joins.
+1. Inner join
+
+ select * from employee inner join dept on employee.deptid=dept.id;
++------+----------+-------+--------+--------+----+-----------+
+| id   | name     | fname | salary | deptid | id | name      |
++------+----------+-------+--------+--------+----+-----------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |  1 | IT        |
+|    2 | INDER    | UMAR  |   2000 |      2 |  2 | SALE      |
+|    3 | SHYAM    | RAJ   |   3000 |      3 |  3 | MARKETING |
++------+----------+-------+--------+--------+----+-----------+
+
+
+#Here we print only name column from both table.
+select employee.name,dept.name from employee inner join dept on employee.deptid=dept.id;
++----------+-----------+
+| name     | name      |
++----------+-----------+
+| RAVINDER | IT        |
+| INDER    | SALE      |
+| SHYAM    | MARKETING |
++----------+-----------+
+
+2. Full Join
+
+select e.name,d.name from employee as e join dept d;
++----------+-----------+
+| name     | name      |
++----------+-----------+
+| RAVINDER | MARKETING |
+| RAVINDER | SALE      |
+| RAVINDER | IT        |
+| INDER    | MARKETING |
+| INDER    | SALE      |
+| INDER    | IT        |
+| SHYAM    | MARKETING |
+| SHYAM    | SALE      |
+| SHYAM    | IT        |
++----------+-----------+
+
+# We add a new entry in dept table.
+
+ select * from dept;
++----+-----------+
+| id | name      |
++----+-----------+
+|  1 | IT        |
+|  2 | SALE      |
+|  3 | MARKETING |
+|  4 | R&D       |
++----+-----------+
+
+
+3. Left Join
+
+select employee.name,dept.name from employee left join dept on employee.deptid=dept.id;
++----------+-----------+
+| name     | name      |
++----------+-----------+
+| RAVINDER | IT        |
+| INDER    | SALE      |
+| SHYAM    | MARKETING |
++----------+-----------+
+It gives only 3 entries because in left table only three entries present.
+
+4. Right Join
+
+select employee.name,dept.name from employee right join dept on employee.deptid=dept.id;
++----------+-----------+
+| name     | name      |
++----------+-----------+
+| RAVINDER | IT        |
+| INDER    | SALE      |
+| SHYAM    | MARKETING |
+| NULL     | R&D       |
++----------+-----------+
+
+It gives only 4 entries because in right table only three entries present.It show name is null because in left table there is no data present,
+
+
+
+-------------------------------*-----------------------------
+
+SORTING:
+
+select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|        3000 |
++-------------+
+
+
+select name, min(salary) from employee;
++----------+-------------+
+| name     | min(salary) |
++----------+-------------+
+| RAVINDER |        1000 |
++----------+-------------+
+
+
+select avg(salary) from employee;
++-------------+
+| avg(salary) |
++-------------+
+|        2000 |
++-------------+
+
+---------------------------------*------------------------------
+
+# ORDERED BY
+
+select * from employee order by salary;
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
+|    2 | INDER    | UMAR  |   2000 |      2 |
+|    3 | SHYAM    | RAJ   |   3000 |      3 |
++------+----------+-------+--------+--------+
+
+ select * from employee order by name;
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    2 | INDER    | UMAR  |   2000 |      2 |
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
+|    3 | SHYAM    | RAJ   |   3000 |      3 |
++------+----------+-------+--------+--------+
+
+
+ select * from employee order by salary desc;
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    3 | SHYAM    | RAJ   |   3000 |      3 |
+|    2 | INDER    | UMAR  |   2000 |      2 |
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
++------+----------+-------+--------+--------+
+
+
+GROUP BY
+select * from employee group by deptid and deptid=2;
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
+|    2 | INDER    | UMAR  |   4000 |      2 |
++------+----------+-------+--------+--------+
+
+
+
+select * from employee group by name and fname='UMAR';
++------+----------+-------+--------+--------+
+| id   | name     | fname | salary | deptid |
++------+----------+-------+--------+--------+
+|    1 | RAVINDER | KUMAR |   1000 |      1 |
++------+----------+-------+--------+--------+
+
+
