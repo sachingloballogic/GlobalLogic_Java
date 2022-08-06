@@ -1,0 +1,24 @@
+package com.globallogic.HelloWorld;
+import java.util.Scanner;
+
+interface Minimum
+{
+	public void min(int x,int y);
+}
+public class Min_No {
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the numbers");
+		Minimum minn=(int x,int y)->
+			{
+				if(x<y)
+					System.out.println("x="+x+" "+"Minimum Number");
+				else
+					System.out.println("y="+y+" "+"Minimum Number");
+			
+			};minn.min(sc.nextInt(),sc.nextInt());
+	}
+
+
+}

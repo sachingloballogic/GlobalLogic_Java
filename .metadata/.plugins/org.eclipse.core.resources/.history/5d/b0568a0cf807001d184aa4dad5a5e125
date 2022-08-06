@@ -1,0 +1,81 @@
+package com.globallogic.HelloWorld;
+
+//import java.util.Scanner;
+
+
+
+//public class StringClass {
+//	public static void main(String[] args) {
+		//Scanner sc=new Scanner(System.in);
+/*		Write a program to print a string entered by user.
+  System.out.println("Enter a string");
+		String st=sc.next();
+		
+		System.out.println(st);
+		
+	}
+
+
+}
+*/
+		/* Write a program to input and display the sentence I love candies.
+System.out.println("Enter a string");
+String st=sc.nextLine();
+
+System.out.println(st);
+	}
+} */
+		
+		
+		
+	/* Write a program to input and display the sentence I love candies.	
+		
+		
+	String name="refrigerator";
+	int count=name.length();
+	System.out.println(count);
+	}
+}
+		
+		*/
+		
+		/* Write a program to check if the letter 'e' is present in the word 'Umbrella'.*/  
+		 public class StringClass {
+	public static void main(String[] args) {
+		String name="Umbrella";
+		char abc='e';
+		if( abc==name){
+			System.out.println("True");
+		}
+		else{System.out.println("False");
+		
+		}
+		
+		
+		
+		
+		
+		
+	}
+}
+		 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

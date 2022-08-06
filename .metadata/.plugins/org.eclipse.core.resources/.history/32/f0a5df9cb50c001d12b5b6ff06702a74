@@ -1,0 +1,31 @@
+// find the even and odd value
+
+
+package com.globallogic.HelloWorld;
+
+import java.util.Scanner;
+
+interface Even_Odd
+{
+	public void even(int x);
+}
+public class Even_Lamda 
+{
+	
+
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the number");
+		Even_Odd eo=(int x)->
+		{
+			if(x%2==0)
+				System.out.println("Even number");
+			else
+				System.out.println("Odd");
+		};
+		eo.even(sc.nextInt());
+
+	}
+
+}
