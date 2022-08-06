@@ -1,0 +1,267 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use buddy;
+Database changed
+mysql> CREATE TABLE employees(emp_id INT, emp_name VARCHAR(100), job_name VARCHAR(100),manager_id INT, hire_date DATE,salary DOUBLE, commission INT, dept_id INT);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc employees;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| emp_id     | int          | YES  |     | NULL    |       |
+| emp_name   | varchar(100) | YES  |     | NULL    |       |
+| job_name   | varchar(100) | YES  |     | NULL    |       |
+| manager_id | int          | YES  |     | NULL    |       |
+| hire_date  | date         | YES  |     | NULL    |       |
+| salary     | double       | YES  |     | NULL    |       |
+| commission | int          | YES  |     | NULL    |       |
+| dept_id    | int          | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO employees value(68319,'KAYLING','PRESIDENT',68319,'1991-11-18',6000.00,500,1001);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO employees value(66928,'BLAZE','MANAGER',68319,'1991-05-01',2750.00,600,3001);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO employees value(67832,'CLARE','MANAGER',68319,'1991-06-09',2550.00,700,1001);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO employees value(65646,'JONAS','MANAGER',68319,'1991-04-02',2957.00,800,2001);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employees;
++--------+----------+-----------+------------+------------+--------+------------+---------+
+| emp_id | emp_name | job_name  | manager_id | hire_date  | salary | commission | dept_id |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+|  68319 | KAYLING  | PRESIDENT |      68319 | 1991-11-18 |   6000 |        500 |    1001 |
+|  66928 | BLAZE    | MANAGER   |      68319 | 1991-05-01 |   2750 |        600 |    3001 |
+|  67832 | CLARE    | MANAGER   |      68319 | 1991-06-09 |   2550 |        700 |    1001 |
+|  65646 | JONAS    | MANAGER   |      68319 | 1991-04-02 |   2957 |        800 |    2001 |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select salary from employees;
++--------+
+| salary |
++--------+
+|   6000 |
+|   2750 |
+|   2550 |
+|   2957 |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select job_name from employees;
++-----------+
+| job_name  |
++-----------+
+| PRESIDENT |
+| MANAGER   |
+| MANAGER   |
+| MANAGER   |
++-----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT emp_name,concat('$',1.15*salary)as "salary" from employees;
++----------+---------------------+
+| emp_name | salary              |
++----------+---------------------+
+| KAYLING  | $6899.999999999999  |
+| BLAZE    | $3162.4999999999995 |
+| CLARE    | $2932.5             |
+| JONAS    | $3400.5499999999997 |
++----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select concat(emp_name,' ', job_name) as "Employees & job" from employees;
++-------------------+
+| Employees & job   |
++-------------------+
+| KAYLING PRESIDENT |
+| BLAZE MANAGER     |
+| CLARE MANAGER     |
+| JONAS MANAGER     |
++-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select emp_id,emp_name,salary,date_format(hire_date,"%M%D,%Y") as 'hire_date' from employees;
++--------+----------+--------+-------------------+
+| emp_id | emp_name | salary | hire_date         |
++--------+----------+--------+-------------------+
+|  68319 | KAYLING  |   6000 | November18th,1991 |
+|  66928 | BLAZE    |   2750 | May1st,1991       |
+|  67832 | CLARE    |   2550 | June9th,1991      |
+|  65646 | JONAS    |   2957 | April2nd,1991     |
++--------+----------+--------+-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select employee name length from employees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'length from employees' at line 1
+mysql> select CHAR_LENGTH(emp_name)from employees;
++-----------------------+
+| CHAR_LENGTH(emp_name) |
++-----------------------+
+|                     7 |
+|                     5 |
+|                     5 |
+|                     5 |
++-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> select CHAR_LENGTH(emp_name)'LENGTH' from employees;
++--------+
+| LENGTH |
++--------+
+|      7 |
+|      5 |
+|      5 |
+|      5 |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT emp_id , salary, commission from employees;
++--------+--------+------------+
+| emp_id | salary | commission |
++--------+--------+------------+
+|  68319 |   6000 |        500 |
+|  66928 |   2750 |        600 |
+|  67832 |   2550 |        700 |
+|  65646 |   2957 |        800 |
++--------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select dept_id, job_name from employees;
++---------+-----------+
+| dept_id | job_name  |
++---------+-----------+
+|    1001 | PRESIDENT |
+|    3001 | MANAGER   |
+|    1001 | MANAGER   |
+|    2001 | MANAGER   |
++---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct(job_name),dept_id from employees;
++-----------+---------+
+| job_name  | dept_id |
++-----------+---------+
+| PRESIDENT |    1001 |
+| MANAGER   |    3001 |
+| MANAGER   |    1001 |
+| MANAGER   |    2001 |
++-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT(job_name),dept_id from employees;
++-----------+---------+
+| job_name  | dept_id |
++-----------+---------+
+| PRESIDENT |    1001 |
+| MANAGER   |    3001 |
+| MANAGER   |    1001 |
+| MANAGER   |    2001 |
++-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employees where dept_id !=2000;
++--------+----------+-----------+------------+------------+--------+------------+---------+
+| emp_id | emp_name | job_name  | manager_id | hire_date  | salary | commission | dept_id |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+|  68319 | KAYLING  | PRESIDENT |      68319 | 1991-11-18 |   6000 |        500 |    1001 |
+|  66928 | BLAZE    | MANAGER   |      68319 | 1991-05-01 |   2750 |        600 |    3001 |
+|  67832 | CLARE    | MANAGER   |      68319 | 1991-06-09 |   2550 |        700 |    1001 |
+|  65646 | JONAS    | MANAGER   |      68319 | 1991-04-02 |   2957 |        800 |    2001 |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employees where hire_date < 1991;
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from employees where hire_date < '1991';
+ERROR 1525 (HY000): Incorrect DATE value: '1991'
+mysql> select * from employees where hire_date < '1991-01-01';
+Empty set (0.00 sec)
+
+mysql> select * from employees where hire_date < '1992-01-01';
++--------+----------+-----------+------------+------------+--------+------------+---------+
+| emp_id | emp_name | job_name  | manager_id | hire_date  | salary | commission | dept_id |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+|  68319 | KAYLING  | PRESIDENT |      68319 | 1991-11-18 |   6000 |        500 |    1001 |
+|  66928 | BLAZE    | MANAGER   |      68319 | 1991-05-01 |   2750 |        600 |    3001 |
+|  67832 | CLARE    | MANAGER   |      68319 | 1991-06-09 |   2550 |        700 |    1001 |
+|  65646 | JONAS    | MANAGER   |      68319 | 1991-04-02 |   2957 |        800 |    2001 |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employees where hire_date < '1992-05-01';
++--------+----------+-----------+------------+------------+--------+------------+---------+
+| emp_id | emp_name | job_name  | manager_id | hire_date  | salary | commission | dept_id |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+|  68319 | KAYLING  | PRESIDENT |      68319 | 1991-11-18 |   6000 |        500 |    1001 |
+|  66928 | BLAZE    | MANAGER   |      68319 | 1991-05-01 |   2750 |        600 |    3001 |
+|  67832 | CLARE    | MANAGER   |      68319 | 1991-06-09 |   2550 |        700 |    1001 |
+|  65646 | JONAS    | MANAGER   |      68319 | 1991-04-02 |   2957 |        800 |    2001 |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employees where hire_date < '1991-05-01';
++--------+----------+----------+------------+------------+--------+------------+---------+
+| emp_id | emp_name | job_name | manager_id | hire_date  | salary | commission | dept_id |
++--------+----------+----------+------------+------------+--------+------------+---------+
+|  65646 | JONAS    | MANAGER  |      68319 | 1991-04-02 |   2957 |        800 |    2001 |
++--------+----------+----------+------------+------------+--------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from employees;
++-------------+
+| avg(salary) |
++-------------+
+|     3564.25 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employees where emp_name = 'BLAZE';
++--------+----------+----------+------------+------------+--------+------------+---------+
+| emp_id | emp_name | job_name | manager_id | hire_date  | salary | commission | dept_id |
++--------+----------+----------+------------+------------+--------+------------+---------+
+|  66928 | BLAZE    | MANAGER  |      68319 | 1991-05-01 |   2750 |        600 |    3001 |
++--------+----------+----------+------------+------------+--------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM employees where(salary*1.25)>3000;
++--------+----------+-----------+------------+------------+--------+------------+---------+
+| emp_id | emp_name | job_name  | manager_id | hire_date  | salary | commission | dept_id |
++--------+----------+-----------+------------+------------+--------+------------+---------+
+|  68319 | KAYLING  | PRESIDENT |      68319 | 1991-11-18 |   6000 |        500 |    1001 |
+|  66928 | BLAZE    | MANAGER   |      68319 | 1991-05-01 |   2750 |        600 |    3001 |
+|  67832 | CLARE    | MANAGER   |      68319 | 1991-06-09 |   2550 |        700 |    1001 |
+|  65646 | JONAS    | MANAGER   |      68319 | 1991-04-02 |   2957 |        800 |    2001 |
++--------+----------+-----------+------------+------------+--------+------------+---
+
+mysql> select emp_name from employees where CHAR_LENGTH(emp_name)=4;
+Empty set (0.00 sec)
+
+mysql> select emp_name from employees where CHAR_LENGTH(emp_name)=5;
++----------+
+| emp_name |
++----------+
+| BLAZE    |
+| CLARE    |
+| JONAS    |
++----------+
+3 rows in set (0.00 sec)
+
